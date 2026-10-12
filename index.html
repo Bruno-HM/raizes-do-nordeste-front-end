@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raízes do Nordeste — Cozinha Típica & Sistema Multicanal</title>
+  
+  <!-- Fontes de identidade gastronômica e moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            terra: {
+              50: '#fcf6f2',
+              100: '#faede5',
+              200: '#f4dacb',
+              300: '#ebbea6',
+              500: '#dc572e',
+              600: '#c5421d',
+              700: '#a33315',
+              800: '#842c16',
+              900: '#6d2716',
+            },
+            dende: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            palha: {
+              50: '#fcfbf7',
+              100: '#f8f4ec',
+              200: '#eee5d3',
+              300: '#e1d2b7',
+              800: '#433c32',
+              900: '#2b261f'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-brand {
+      font-family: 'Fraunces', Georgia, serif;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .img-zoom { transition: transform 0.4s ease; }
+    .dish-card:hover .img-zoom { transform: scale(1.05); }
+
+    /* Adaptação de Acessibilidade e Interface do Canal Totem de Autoatendimento */
+    html.canal-totem {
+      font-size: 18px;
+    }
+    html.canal-totem button:not(.btn-mini), html.canal-totem input:not([type=checkbox]):not([type=radio]), html.canal-totem select { min-height: 64px; }
+    html.canal-totem .btn-mini { min-width: 56px; min-height: 56px; }
+    html.canal-app { background: #e1d2b7; }
+    html.canal-app body { max-width: 430px; margin: 0 auto; box-shadow: 0 0 0 1px #c9b896; }
+    label:has(input[name=forma-pag]:checked) { border: 2px solid #c5421d !important; background: #fcf6f2 !important; }
+    label:has(input[name=forma-pag]:focus-visible) { outline: 3px solid #1d4ed8; outline-offset: 2px; }
+    html.canal-totem .grid-cardapio {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+  </style>
+</head>
+<body class="bg-palha-100 text-palha-900 min-h-screen flex flex-col antialiased selection:bg-terra-500 selection:text-white transition-all overflow-x-hidden">
+
+  <!-- Faixa de Aviso e Canal de Atendimento Ativo -->
+  <aside aria-label="Aviso institucional" class="bg-gradient-to-r from-terra-800 via-terra-700 to-amber-800 text-white text-xs py-2 px-3 sm:px-4 shadow-sm">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+      <div class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="inline-block animate-pulse">🔥</span>
+        <span>Cupom <strong class="bg-amber-400 text-stone-900 px-1 py-0.5 rounded font-mono font-bold">RAIZ10</strong> para 10% OFF!</span>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-4 text-[11px] sm:text-[11px] opacity-90">
+        <span id="banner-mode-badge" class="bg-white/20 px-2 py-0.5 rounded font-medium">Web / Responsivo</span>
+        <span class="hidden md:inline">🍃 Agricultura familiar</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cabeçalho Principal -->
+  <header class="sticky top-0 z-40 bg-palha-50/95 backdrop-blur-md border-b border-palha-200 shadow-xs">
+    <div class="max-w-6xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex flex-wrap items-center justify-between gap-2">
+      
+      <!-- Marca (com ícone tradicional de panela de barro fumegante) -->
+      <a href="#" onclick="go('menu'); return false;" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-terra-600 to-dende-500 flex items-center justify-center text-white shadow-md shadow-terra-600/30 group-hover:scale-105 transition-transform">
+          <!-- Ícone acolhedor de Panela de Barro Tradicional -->
+          <svg class="w-5 h-5 sm:w-5.5 sm:h-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Vapores aromáticos -->
+            <path d="M8 3c0 1.5 1 2 1 3"/>
+            <path d="M12 2c0 1.5 1 2 1 3.5"/>
+            <path d="M16 3c0 1.5 1 2 1 3"/>
+            <!-- Tampa e corpo da panela de barro -->
+            <path d="M4 10h16"/>
+            <path d="M5 10c0 5 2.5 8 7 8s7-3 7-8"/>
+            <!-- Alças da panela -->
+            <path d="M2.5 12h1.5"/>
+            <path d="M20 12h1.5"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-brand font-bold text-base sm:text-xl text-stone-900 tracking-tight leading-none block">
+            Raízes <span class="text-terra-600 italic font-medium">do</span> Nordeste
+          </span>
+          <span class="text-[11px] sm:text-[11px] font-semibold uppercase tracking-wider text-stone-500 block mt-0.5">Cozinha Típica</span>
+        </div>
+      </a>
+
+      <!-- Seletores de Contexto Multicanal e Localização -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
+        <!-- Unidade Física (Desktop/Tablet) -->
+        <div class="relative">
+          <select id="unit-select" class="max-w-[150px] sm:max-w-none bg-white border border-palha-200 text-stone-800 text-xs font-semibold rounded-full px-3 py-1.5 shadow-xs focus:ring-2 focus:ring-terra-500 cursor-pointer" aria-label="Selecione a Unidade">
+            <!-- Preenchido via JS -->
+          </select>
+        </div>
+
+        <!-- Seletor de Canal (RF/RNF: Multicanalidade - App, Web, Totem) -->
+        <div class="relative">
+          <select id="channel-select" class="bg-palha-200/90 text-stone-800 text-xs font-bold rounded-full px-2.5 sm:px-3 py-1.5 border border-palha-300 focus:outline-none cursor-pointer" aria-label="Canal de Atendimento">
+            <option value="web">🌐 Web</option>
+            <option value="app">📱 App</option>
+            <option value="totem">🖥️ Totem</option>
+          </select>
+        </div>
+
+        <!-- Botão Usuário / Autenticação -->
+        <div id="auth-header-btn" class="shrink-0">
+          <!-- Dinâmico: Logar ou Perfil -->
+        </div>
+
+        <!-- Botão da Comanda / Carrinho (Ajustado para nunca vazar a tela) -->
+        <button onclick="go('cart')" class="relative flex items-center gap-1.5 sm:gap-2 bg-terra-600 hover:bg-terra-700 active:scale-95 text-white px-2.5 sm:px-3.5 py-1.5 rounded-full font-semibold text-xs sm:text-sm shadow-sm transition shrink-0" aria-label="Ver carrinho">
+          <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+          <span class="hidden sm:inline">Carrinho</span>
+          <span id="cart-badge" class="bg-dende-400 text-stone-900 font-bold px-1.5 py-0.2 rounded-full text-[11px] sm:text-xs">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Barra de Navegação Horizontal -->
+    <nav class="border-t border-palha-200/80 bg-white/80 backdrop-blur-sm overflow-hidden">
+      <div class="max-w-6xl mx-auto px-3 sm:px-4 flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar py-1" id="nav-container">
+        <!-- Preenchido dinamicamente via JS -->
+      </div>
+    </nav>
+  </header>
+
+  <!-- Conteúdo Central -->
+  <main id="main-content" class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 transition-all">
+    <!-- Telas gerenciadas por estado -->
+  </main>
+
+  <!-- MODAL DE AUTENTICAÇÃO (Login & Cadastro - Requisito Obrigatório) -->
+  <div id="auth-modal" role="dialog" aria-modal="true" aria-label="Acesso à conta" class="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-stone-200 flex flex-col max-h-[95vh]">
+      <div class="p-6 bg-terra-800 text-white flex items-center justify-between">
+        <div>
+          <h3 class="font-brand font-bold text-xl" id="auth-modal-title">Acesse sua Conta</h3>
+          <p class="text-xs text-terra-100 mt-0.5">Faça parte do Clube Arretado e acompanhe seus pedidos</p>
+        </div>
+        <button onclick="fecharModalAuth()" aria-label="Fechar" class="text-white/80 hover:text-white text-2xl font-bold leading-none">&times;</button>
+      </div>
+
+      <!-- Abas Internas do Modal: Entrar ou Cadastrar -->
+      <div class="flex border-b border-palha-200 bg-palha-50">
+        <button id="tab-btn-login" onclick="alternarAbaAuth('login')" class="flex-1 py-3 text-xs font-bold text-terra-700 border-b-2 border-terra-600">
+          Já sou Cliente (Entrar)
+        </button>
+        <button id="tab-btn-register" onclick="alternarAbaAuth('register')" class="flex-1 py-3 text-xs font-semibold text-stone-500 hover:text-stone-800">
+          Criar Nova Conta
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4 text-xs">
+        <!-- Formulário de Login -->
+        <form id="form-login" novalidate onsubmit="realizarLogin(event)" class="space-y-3">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">E-mail Cadastrado</label>
+            <input type="email" id="login-email" required placeholder="seuemail@exemplo.com.br" class="w-full bg-palha-50 border border-palha-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-terra-500 text-xs">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Senha de Acesso</label>
+            <input type="password" id="login-senha" required placeholder="••••••••" class="w-full bg-palha-50 border border-palha-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-terra-500 text-xs">
+          </div>
+          <div id="login-error" class="text-terra-600 font-bold text-xs min-h-[16px]"></div>
+          <button type="submit" class="w-full bg-terra-600 hover:bg-terra-700 text-white font-bold py-3 rounded-xl transition shadow-md">
+            Entrar no Sistema
+          </button>
+        </form>
+
+        <!-- Formulário de Cadastro (UC1 Cadastrar Cliente - UC1) -->
+        <form id="form-register" novalidate onsubmit="realizarCadastro(event)" class="space-y-3 hidden">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Nome *</label>
+            <input type="text" id="reg-nome" required placeholder="Ex: Maria José de Souza" class="w-full bg-palha-50 border border-palha-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-terra-500 text-xs">
+          </div>
+          
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">E-mail *</label>
+            <input type="email" id="reg-email" required placeholder="maria@exemplo.com" class="w-full bg-palha-50 border border-palha-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-terra-500 text-xs">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Senha Segura (Mínimo 6 dígitos) *</label>
+            <input type="password" id="reg-senha" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full bg-palha-50 border border-palha-200 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-terra-500 text-xs">
+          </div>
+
+          <!-- Termos e Conformidade Explícita com LGPD -->
+          <div class="bg-palha-50 p-3 rounded-xl border border-palha-200 space-y-2 text-[11px] text-stone-600">
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" id="reg-lgpd-obrigatorio" class="mt-0.5 rounded text-terra-600 focus:ring-terra-500">
+              <span><strong>Li e aceito a <a href="#" onclick="abrirPolitica(); return false;" class="underline text-terra-700">Política de Privacidade</a></strong> e autorizo o tratamento dos dados para pedidos e fidelidade (Obrigatório).</span>
+            </label>
+            <label class="flex items-start gap-2 cursor-pointer">
+              <input type="checkbox" id="reg-lgpd-mkt" class="mt-0.5 rounded text-terra-600 focus:ring-terra-500">
+              <span>Quero receber promoções e campanhas por e-mail/WhatsApp (Opcional).</span>
+            </label>
+          </div>
+
+          <div id="reg-error" class="text-terra-600 font-bold text-xs min-h-[16px]"></div>
+          <button type="submit" class="w-full bg-dende-500 hover:bg-dende-400 text-stone-950 font-bold py-3 rounded-xl transition shadow-md">
+            Criar conta e entrar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE DETALHES DO PRATO -->
+  <div id="dish-modal" role="dialog" aria-modal="true" aria-label="Detalhes do prato" class="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-stone-100 flex flex-col max-h-[90vh]">
+      <div id="dish-modal-content" class="overflow-y-auto p-0 flex flex-col"></div>
+    </div>
+  </div>
+
+  <div id="policy-modal" role="dialog" aria-modal="true" aria-label="Política de Privacidade" class="fixed inset-0 z-50 bg-stone-900/60 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 text-xs text-stone-700 space-y-3 leading-relaxed">
+      <h3 class="font-brand font-bold text-xl text-stone-900">Política de Privacidade</h3>
+      <p><strong>Dados coletados:</strong> nome, e-mail e senha no cadastro; histórico de pedidos e pontos de fidelidade.</p>
+      <p><strong>Finalidade:</strong> processar pedidos, informar o status e operar o programa de fidelidade. Não coletamos dados além do necessário (Lei nº 13.709/2018, art. 6º).</p>
+      <p><strong>Marketing:</strong> o envio de promoções é opcional, nunca vem marcado e pode ser revogado a qualquer momento em Privacidade.</p>
+      <p><strong>Pagamento:</strong> feito por serviço externo; não guardamos dados de cartão.</p>
+      <p><strong>Seus direitos (art. 18):</strong> acessar e baixar seus dados, revogar consentimentos e excluir sua conta, na aba Privacidade.</p>
+      <p class="text-stone-500">Protótipo acadêmico: os dados ficam apenas na memória do navegador e são perdidos ao recarregar a página.</p>
+      <button onclick="fecharPolitica()" class="w-full bg-terra-600 hover:bg-terra-700 text-white font-bold py-2.5 rounded-xl">Fechar</button>
+    </div>
+  </div>
+
+  <!-- CONTAINER DE TOASTS -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Rodapé Institucional -->
+  <footer class="bg-palha-200/60 border-t border-palha-300 mt-12 py-6 text-stone-600 text-xs">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      <div>
+        <p class="font-brand font-bold text-stone-900 text-base">Raízes do Nordeste — Gastronomia e Afeto</p>
+        <p class="text-[11px] text-stone-500">Projeto Multidisciplinar Front-End — Uninter 2026. Em conformidade com a LGPD (Lei 13.709/2018).</p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold">
+        <a href="#" onclick="abrirPolitica(); return false;" class="text-terra-700 hover:underline">Política de Privacidade</a>
+        <span>•</span>
+        <a href="#" onclick="go('priv'); return false;" class="hover:text-stone-900">Termos & Privacidade</a>
+        <span>•</span>
+        <a href="#" onclick="go('loy'); return false;" class="hover:text-stone-900">Clube de Fidelidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Configuração das unidades físicas da rede
+    const UNIDADES = {
+      centro: { nome: 'Fortaleza – Centro', cidade: 'Fortaleza', endereco: 'Rua Major Facundo, 500' },
+      recife: { nome: 'Recife – Boa Viagem', cidade: 'Recife', endereco: 'Av. Boa Viagem, 1420' },
+      salvador: { nome: 'Salvador – Pelourinho', cidade: 'Salvador', endereco: 'Largo de Santana, 45' }
+    };
+
+    // Cardápio dinâmico com fotos apetitosas e disponibilidade por franquia
+    const CARDAPIO = [
+      {
+        id: 1,
+        nome: 'Baião de Dois com Queijo Coalho',
+        categoria: 'Pratos Principais',
+        preco: 28.00,
+        unidades: ['centro', 'recife', 'salvador'],
+        tempo: '20 min',
+        serve: 'Serve 1 a 2 pessoas',
+        destaque: 'O Mais Pedido',
+        descricao: 'Arroz da terra e feijão de corda preparados na manteiga de garrafa, queijo coalho tostadinho na chapa e cheiro-verde fresco.',
+        img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-amber-100 text-amber-900'
+      },
+      {
+        id: 2,
+        nome: 'Tapioca com Carne de Sol na Nata',
+        categoria: 'Lanches & Tapioquinhas',
+        preco: 18.00,
+        unidades: ['centro', 'recife', 'salvador'],
+        tempo: '10 min',
+        serve: 'Individual',
+        destaque: 'Tradicional Cearense',
+        descricao: 'Goma artesanal fininha, recheio caprichado de carne de sol desfiada puxada na cebola roxa e nata fresca da fazenda.',
+        img: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-emerald-100 text-emerald-900'
+      },
+      {
+        id: 3,
+        nome: 'Sanduíche de Charque no Pão Francês',
+        categoria: 'Lanches & Tapioquinhas',
+        preco: 22.00,
+        unidades: ['centro', 'recife'],
+        tempo: '12 min',
+        serve: 'Individual',
+        destaque: 'Feira Livre',
+        descricao: 'Pão d\'água crocante selado na manteiga de garrafa, carne de charque desfiada bem tostadinha, vinagrete e queijo derretido.',
+        img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-orange-100 text-orange-900'
+      },
+      {
+        id: 4,
+        nome: 'Acarajé Tradicional da Bahia',
+        categoria: 'Lanches & Tapioquinhas',
+        preco: 16.00,
+        unidades: ['salvador'],
+        tempo: '15 min',
+        serve: 'Individual',
+        destaque: 'Patrimônio Imaterial',
+        descricao: 'Bolinho de feijão-fradinho batido no muque e frito no azeite de dendê puro. Acompanha vatapá, caruru, camarão seco e salada.',
+        img: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-red-100 text-red-900'
+      },
+      {
+        id: 5,
+        nome: 'Cuscuz Nordestino com Ovo & Manteiga',
+        categoria: 'Lanches & Tapioquinhas',
+        preco: 12.00,
+        unidades: ['centro', 'recife', 'salvador'],
+        tempo: '10 min',
+        serve: 'Individual',
+        destaque: 'Café do Sertão',
+        descricao: 'Flocão de milho cozido no vapor da cuscuzeira, servido com farta manteiga de garrafa e dois ovos caipiras fritos com gema mole.',
+        img: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-yellow-100 text-yellow-900'
+      },
+      {
+        id: 6,
+        nome: 'Suco Natural de Caju do Pomar',
+        categoria: 'Bebidas Típicas',
+        preco: 9.00,
+        unidades: ['centro', 'recife', 'salvador'],
+        tempo: '5 min',
+        serve: 'Copo 400ml',
+        destaque: 'Refrescante',
+        descricao: 'Polpa fresca colhida no litoral cearense, batida geladinha com água mineral ou leite.',
+        img: 'https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-amber-100 text-amber-900'
+      },
+      {
+        id: 7,
+        nome: 'Caldo de Cana Fresco com Limão',
+        categoria: 'Bebidas Típicas',
+        preco: 8.00,
+        unidades: ['centro', 'recife'],
+        tempo: '5 min',
+        serve: 'Copo 500ml',
+        destaque: 'Moído na Hora',
+        descricao: 'Garapa de cana fresca recém-moída na hora com toque de limão cravo bem geladinho.',
+        img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-emerald-100 text-emerald-900'
+      },
+      {
+        id: 8,
+        nome: 'Bolo de Rolo Pernambucano Original',
+        categoria: 'Sobremesas Regionais',
+        preco: 13.00,
+        unidades: ['recife', 'salvador', 'centro'],
+        tempo: 'Pronto para servir',
+        serve: 'Fatia caprichada',
+        destaque: 'Patrimônio de PE',
+        descricao: 'Finíssimas camadas enroladas com recheio de goiabada cascão derretida e toque suave de manteiga.',
+        img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80',
+        badge: 'bg-rose-100 text-rose-900'
+      }
+    ];
+
+    const AppState = {
+      usuario: null, // Inicia deslogado (visitante)
+      unidade: 'centro',
+      canal: 'web', // 'web' | 'app' | 'totem'
+      abaAtiva: 'menu',
+      categoriaFiltro: 'Todos',
+      buscaTexto: '',
+      carrinho: {}, // Comanda inicia zerada
+      pedidos: [],  // Sem pedidos prévios
+      pontosFidelidade: 0,
+      cupomAplicado: null,
+      etapaCheckout: 0,
+      consentimentoLGPD: { obrigatorio: false, marketing: false }
+    };
+
+    const esc = (t) => String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const emReais = (valor) => valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    function showToast(titulo, mensagem, tipo = 'sucesso') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `p-4 rounded-2xl shadow-xl border pointer-events-auto flex items-start gap-3 transition-all duration-300 transform translate-y-3 opacity-0 max-w-sm ${
+        tipo === 'sucesso' ? 'bg-stone-900 text-white border-stone-800' : 'bg-terra-800 text-white border-terra-700'
+      }`;
+
+      const icon = tipo === 'sucesso' 
+        ? `<div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">✓</div>` 
+        : `<div class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0">!</div>`;
+
+      toast.innerHTML = `
+        ${icon}
+        <div class="flex-1 text-xs">
+          <p class="font-bold text-amber-400 tracking-wide uppercase text-[11px]">${titulo}</p>
+          <p class="text-stone-200 mt-0.5 leading-snug">${mensagem}</p>
+        </div>
+      `;
+
+      container.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.remove('translate-y-3', 'opacity-0'));
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 350);
+      }, 3500);
+    }
+
+    function go(aba) {
+      AppState.abaAtiva = aba;
+      if (aba === 'menu') AppState.etapaCheckout = 0;
+      renderizarApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function calcularSubtotal() {
+      let sub = 0;
+      for (const id in AppState.carrinho) {
+        const item = CARDAPIO.find(p => p.id == id);
+        if (item) sub += item.preco * AppState.carrinho[id].qtd;
+      }
+      return sub;
+    }
+
+    function calcularDesconto() {
+      const sub = calcularSubtotal();
+      if (AppState.cupomAplicado === 'RAIZ10') return sub * 0.10;
+      if (AppState.cupomAplicado === 'PONTOS') return Math.min(10, sub);
+      return 0;
+    }
+
+    function calcularTotal() {
+      return Math.max(0, calcularSubtotal() - calcularDesconto());
+    }
+
+    function contarItensCarrinho() {
+      return Object.values(AppState.carrinho).reduce((acc, curr) => acc + curr.qtd, 0);
+    }
+
+    const Telas = {
+      menu() {
+        const itensUnidade = CARDAPIO.filter(p => p.unidades.includes(AppState.unidade));
+        const categorias = ['Todos', ...new Set(itensUnidade.map(p => p.categoria))];
+
+        const pratosFiltrados = itensUnidade.filter(p => {
+          const matchCat = AppState.categoriaFiltro === 'Todos' || p.categoria === AppState.categoriaFiltro;
+          const matchBusca = !AppState.buscaTexto || 
+            p.nome.toLowerCase().includes(AppState.buscaTexto.toLowerCase()) ||
+            p.descricao.toLowerCase().includes(AppState.buscaTexto.toLowerCase());
+          return matchCat && matchBusca;
+        });
+
+        return `
+          <!-- Banner de Boas-Vindas & Destaque Regional -->
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-terra-900 via-terra-800 to-amber-900 text-white p-6 sm:p-8 mb-6 shadow-xl">
+            <div class="relative z-10 max-w-2xl">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 font-bold text-[11px] uppercase tracking-wider mb-2 border border-amber-300/30">
+                🌿 Tradição & Afeto em Cada Prato
+              </span>
+              <h1 class="font-brand text-2xl sm:text-4xl font-bold text-white mb-2 leading-tight">
+                Comida regional feita com respeito às origens.
+              </h1>
+              <p class="text-stone-200 text-xs sm:text-sm leading-relaxed mb-4">
+                Cardápio servido na unidade <strong>${UNIDADES[AppState.unidade].nome}</strong>. Peça pelo app, balcão ou totem interativo.
+              </p>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="filtrarCategoria('Pratos Principais')" class="bg-dende-500 hover:bg-dende-400 text-stone-950 font-bold px-4 py-2 rounded-full transition">
+                  Ver Baião & Pratos
+                </button>
+                <button onclick="go('promo')" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full border border-white/20 transition">
+                  Ofertas Ativas
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtros de Busca e Categorias Dinâmicas -->
+          <div class="space-y-4 mb-6">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div>
+                <h2 class="font-brand font-bold text-xl sm:text-2xl text-stone-900">
+                  Cardápio da Unidade: <span class="text-terra-700">${UNIDADES[AppState.unidade].cidade}</span>
+                </h2>
+                <p class="text-xs text-stone-500">${UNIDADES[AppState.unidade].endereco}</p>
+              </div>
+
+              <!-- Busca de Prato -->
+              <div class="relative w-full sm:w-64">
+                <input 
+                  type="text" 
+                  id="search-input"
+                  placeholder="Buscar cuscuz, baião, tapioca..." 
+                  value="${esc(AppState.buscaTexto)}"
+                  oninput="pesquisarPrato(this.value)"
+                  class="w-full bg-white border border-palha-200 rounded-full pl-9 pr-4 py-2 text-xs focus:ring-2 focus:ring-terra-500 shadow-xs"
+                />
+                <svg class="w-4 h-4 text-stone-500 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              </div>
+            </div>
+
+            <!-- Chips de Categoria -->
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+              ${categorias.map(cat => `
+                <button 
+                  onclick="filtrarCategoria('${cat}')" 
+                  class="px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shadow-xs ${
+                    AppState.categoriaFiltro === cat
+                      ? 'bg-terra-700 text-white'
+                      : 'bg-white text-stone-700 border border-palha-200 hover:bg-palha-100'
+                  }"
+                >
+                  ${cat}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Grade de Pratos do Cardápio -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 grid-cardapio">
+            ${pratosFiltrados.map(prato => renderizarCardPrato(prato)).join('')}
+          </div>
+        `;
+      },
+
+      cart() {
+        const itemIds = Object.keys(AppState.carrinho);
+        if (!itemIds.length) {
+          return `
+            <div class="max-w-md mx-auto py-12 text-center bg-white rounded-3xl p-6 sm:p-8 border border-palha-200 shadow-sm mt-4">
+              <span class="text-4xl block mb-2">🧺</span>
+              <h2 class="font-brand font-bold text-2xl text-stone-900 mb-1">Seu carrinho está vazio</h2>
+              <p class="text-stone-500 text-xs mb-5">Escolha uma de nossas delícias para montar seu pedido.</p>
+              <button onclick="go('menu')" class="bg-terra-600 hover:bg-terra-700 text-white font-bold px-6 py-2.5 rounded-full text-xs shadow-md transition">
+                Abrir Cardápio
+              </button>
+            </div>
+          `;
+        }
+
+        const subtotal = calcularSubtotal();
+        const desconto = calcularDesconto();
+        const total = calcularTotal();
+
+        return `
+          <div class="max-w-4xl mx-auto w-full">
+            <!-- Barra de Etapas de Checkout Responsiva -->
+            <div class="mb-5 flex items-center justify-center gap-2 sm:gap-4 text-[11px] sm:text-xs font-bold text-stone-500 overflow-x-auto px-1 py-1">
+              <span class="${AppState.etapaCheckout >= 0 ? 'text-terra-700 font-extrabold' : ''}">1. Carrinho</span>
+              <span class="text-stone-300">——</span>
+              <span class="${AppState.etapaCheckout >= 1 ? 'text-terra-700 font-extrabold' : ''}">2. Identificação</span>
+              <span class="text-stone-300">——</span>
+              <span class="${AppState.etapaCheckout >= 2 ? 'text-terra-700 font-extrabold' : ''}">3. Pagamento</span>
+            </div>
+
+            ${AppState.etapaCheckout === 0 ? `
+              <!-- Etapa 0: Lista de Itens e Resumo (Otimizado para Mobile) -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="lg:col-span-2 space-y-3">
+                  <div class="flex items-center justify-between px-1">
+                    <h2 class="font-brand font-bold text-lg sm:text-xl text-stone-900">Itens no carrinho</h2>
+                    <span class="text-xs text-stone-500">${contarItensCarrinho()} item(ns)</span>
+                  </div>
+
+                  ${itemIds.map(id => {
+                    const prato = CARDAPIO.find(p => p.id == id);
+                    const item = AppState.carrinho[id];
+                    return `
+                      <div class="bg-white rounded-2xl p-3 sm:p-4 border border-palha-200 shadow-xs flex flex-wrap sm:flex-nowrap items-center gap-3">
+                        <img src="${prato.img}" alt="${prato.nome}" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover shrink-0" onerror="this.src='https://placehold.co/120x120/faf5f0/78350f?text=Raizes'">
+                        
+                        <div class="flex-1 min-w-[140px]">
+                          <h4 class="font-bold text-stone-900 text-xs sm:text-sm leading-tight">${prato.nome}</h4>
+                          <p class="text-[11px] text-stone-500 mt-0.5">${emReais(prato.preco)} cada</p>
+                          ${item.obs ? `<span class="text-[11px] bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded inline-block mt-1">Obs: ${esc(item.obs)}</span>` : ''}
+                        </div>
+
+                        <div class="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto pt-2 sm:pt-0 border-t sm:border-t-0 border-palha-100">
+                          <div class="flex items-center gap-1 bg-palha-100 p-1 rounded-xl shrink-0">
+                            <button onclick="alterarQtdCarrinho(${prato.id}, -1)" class="btn-mini w-6 h-6 rounded-lg bg-white text-stone-800 font-bold hover:bg-stone-200 flex items-center justify-center text-xs" aria-label="Diminuir quantidade">−</button>
+                            <span class="font-bold text-xs px-2">${item.qtd}</span>
+                            <button onclick="alterarQtdCarrinho(${prato.id}, 1)" class="btn-mini w-6 h-6 rounded-lg bg-white text-stone-800 font-bold hover:bg-stone-200 flex items-center justify-center text-xs" aria-label="Aumentar quantidade">+</button>
+                          </div>
+                          <span class="font-bold text-terra-700 text-xs sm:text-sm text-right shrink-0 min-w-[65px]">${emReais(prato.preco * item.qtd)}</span>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+
+                  <button onclick="go('menu')" class="text-terra-700 text-xs font-bold inline-flex items-center gap-1 hover:underline pt-1">
+                    ← Escolher mais pratos
+                  </button>
+                </div>
+
+                <!-- Resumo & Cupons -->
+                <div class="bg-white rounded-3xl p-4 sm:p-5 border border-palha-200 shadow-sm space-y-4 h-fit">
+                  <h3 class="font-brand font-bold text-base sm:text-lg text-stone-900">Resumo do pedido</h3>
+
+                  <div>
+                    <label class="block text-[11px] font-bold text-stone-600 mb-1">Cupom Promocional</label>
+                    <div class="flex gap-2">
+                      <input type="text" id="input-cupom" placeholder="RAIZ10 ou PONTOS" value="${AppState.cupomAplicado || ''}" class="flex-1 uppercase bg-palha-50 border border-palha-200 rounded-xl px-3 py-2 text-xs font-semibold">
+                      <button onclick="aplicarCupom()" class="bg-stone-900 hover:bg-stone-800 text-white px-3.5 py-2 rounded-xl text-xs font-bold shrink-0">Aplicar</button>
+                    </div>
+                  </div>
+
+                  <div class="border-t border-palha-100 pt-3 space-y-2 text-xs">
+                    <div class="flex justify-between text-stone-600">
+                      <span>Subtotal</span>
+                      <span>${emReais(subtotal)}</span>
+                    </div>
+                    ${desconto > 0 ? `
+                      <div class="flex justify-between text-emerald-700 font-bold bg-emerald-50 px-2 py-1 rounded">
+                        <span>Desconto (${AppState.cupomAplicado})</span>
+                        <span>− ${emReais(desconto)}</span>
+                      </div>
+                    ` : ''}
+                    <div class="border-t border-palha-200 pt-2 flex justify-between font-bold text-stone-900 text-sm sm:text-base">
+                      <span>Total do Pedido</span>
+                      <span class="text-terra-700">${emReais(total)}</span>
+                    </div>
+                  </div>
+
+                  <button onclick="avancarCheckout()" class="w-full bg-dende-500 hover:bg-dende-400 text-stone-950 font-bold py-3 rounded-2xl text-xs sm:text-sm shadow transition">
+                    Avançar para Identificação →
+                  </button>
+                </div>
+              </div>
+            ` : ''}
+
+            ${AppState.etapaCheckout === 1 ? `
+              <!-- Etapa 1: Identificação do Usuário -->
+              <div class="max-w-md mx-auto bg-white rounded-3xl p-5 sm:p-6 border border-palha-200 shadow-sm space-y-4">
+                <div>
+                  <h3 class="font-brand font-bold text-lg sm:text-xl text-stone-900">Identificação para o Pedido</h3>
+                  <p class="text-xs text-stone-500">Seus dados garantem a chamada do pedido e pontuação de fidelidade.</p>
+                </div>
+
+                ${AppState.usuario ? `
+                  <div class="bg-palha-50 p-4 rounded-2xl border border-palha-200 text-xs space-y-1">
+                    <p class="text-stone-500">Conectado como:</p>
+                    <p class="font-bold text-stone-900 text-sm">${AppState.usuario.nome}</p>
+                    <p class="text-stone-600 break-words">${AppState.usuario.email}</p>
+                    <p class="text-[11px] text-emerald-700 font-semibold mt-1">✓ Pontuação de Fidelidade Ativa (+${Math.floor(total)} pts)</p>
+                  </div>
+                  <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                    <button onclick="AppState.etapaCheckout = 0; renderizarApp();" class="w-full sm:flex-1 bg-palha-200 text-stone-800 font-bold py-2.5 rounded-xl text-xs">Voltar ao carrinho</button>
+                    <button onclick="AppState.etapaCheckout = 2; renderizarApp();" class="w-full sm:flex-1 bg-terra-600 hover:bg-terra-700 text-white font-bold py-2.5 rounded-xl text-xs shadow">Ir para Pagamento →</button>
+                  </div>
+                ` : `
+                  <div class="text-center py-4 space-y-3">
+                    <p class="text-xs text-stone-600">Para continuar com segurança e rastreamento, acesse ou cadastre sua conta.</p>
+                    <button onclick="abrirModalAuth('register')" class="w-full bg-terra-600 hover:bg-terra-700 text-white font-bold py-3 rounded-xl text-xs shadow">Criar Conta Rápida (com LGPD)</button>
+                    <button onclick="abrirModalAuth('login')" class="w-full bg-palha-200 hover:bg-palha-300 text-stone-800 font-bold py-2.5 rounded-xl text-xs">Já possuo cadastro</button>
+                  </div>
+                `}
+              </div>
+            ` : ''}
+
+            ${AppState.etapaCheckout === 2 ? `
+              <!-- Etapa 2: Pagamento por Serviço Externo -->
+              <div class="max-w-lg mx-auto bg-white rounded-3xl p-5 sm:p-6 border border-palha-200 shadow-sm space-y-4 sm:space-y-5">
+                <div class="text-center">
+                  <span class="text-3xl">💳</span>
+                  <h3 class="font-brand font-bold text-xl sm:text-2xl text-stone-900 mt-1">Solicitação de Pagamento Externo</h3>
+                  <p class="text-xs text-stone-500">Valor para processamento: <strong class="text-terra-700 text-sm">${emReais(total)}</strong></p>
+                  <p class="text-[11px] sm:text-[11px] text-stone-500 mt-0.5">Você será levado ao serviço de pagamento externo. Não guardamos dados do seu cartão.</p>
+                </div>
+
+                <div class="space-y-2 sm:space-y-3">
+                  <label class="block text-xs font-bold text-stone-700">Selecione o Meio de Pagamento Externo:</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                    <label class="flex flex-col items-center gap-1.5 p-2.5 rounded-2xl border-2 border-terra-600 bg-terra-50 cursor-pointer text-center">
+                      <input type="radio" name="forma-pag" value="pix" checked class="sr-only" onchange="selecionarMetodoPag(this.value)">
+                      <span class="text-lg">⚡</span>
+                      <strong class="text-stone-900 text-xs">Pix</strong>
+                      <span class="text-[11px] text-emerald-700 font-semibold">Instantâneo</span>
+                    </label>
+                    <label class="flex flex-col items-center gap-1.5 p-2.5 rounded-2xl border border-stone-200 hover:border-stone-300 bg-white cursor-pointer text-center">
+                      <input type="radio" name="forma-pag" value="cartao" class="sr-only" onchange="selecionarMetodoPag(this.value)">
+                      <span class="text-lg">💳</span>
+                      <strong class="text-stone-900 text-xs">Cartão de Crédito</strong>
+                      <span class="text-[11px] text-stone-500">Gateway Externo</span>
+                    </label>
+                    <label class="flex flex-col items-center gap-1.5 p-2.5 rounded-2xl border border-amber-300 hover:border-amber-400 bg-amber-50/50 cursor-pointer text-center">
+                      <input type="radio" name="forma-pag" value="falha" class="sr-only" onchange="selecionarMetodoPag(this.value)">
+                      <span class="text-lg">⚠️</span>
+                      <strong class="text-stone-900 text-xs">Cartão que falha</strong>
+                      <span class="text-[11px] text-rose-700 font-semibold">Simulação de Teste</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Painel do Gateway Pix -->
+                <div id="painel-pix" class="bg-palha-50 p-3 sm:p-4 rounded-2xl border border-palha-200 text-center space-y-2 sm:space-y-3">
+                  <div class="w-32 h-32 sm:w-36 sm:h-36 bg-white p-2 rounded-xl mx-auto shadow-inner border border-stone-200 flex items-center justify-center">
+                    <svg class="w-28 h-28 sm:w-32 sm:h-32" viewBox="0 0 100 100" fill="currentColor">
+                      <rect width="100" height="100" fill="white"/>
+                      <path d="M10 10h30v30h-30zM50 10h10v10h-10zM70 10h20v20h-20zM60 20h10v20h-10zM80 30h10v10h-10zM10 50h10v20h-10zM30 50h30v10h-30zM70 50h20v40h-20zM10 80h20v10h-20zM40 70h20v20h-20z" fill="#292524"/>
+                      <rect x="18" y="18" width="14" height="14" fill="white"/>
+                      <rect x="22" y="22" width="6" height="6" fill="#dc2626"/>
+                      <rect x="76" y="16" width="8" height="8" fill="#292524"/>
+                      <rect x="76" y="76" width="8" height="8" fill="#dc2626"/>
+                    </svg>
+                  </div>
+                  <div class="flex items-center gap-1.5 sm:gap-2">
+                    <input type="text" readonly value="00020126580014br.gov.bcb.pix0136raizes-nordeste-uninter@pix.com" class="w-full bg-white text-[11px] sm:text-[11px] font-mono p-2 rounded-lg border border-palha-200 select-all truncate">
+                    <button onclick="copiarPixChave()" class="bg-stone-800 hover:bg-stone-900 text-white text-[11px] sm:text-[11px] font-semibold px-2.5 sm:px-3 py-2 rounded-lg shrink-0">Copiar</button>
+                  </div>
+                </div>
+
+                <div id="pag-retorno" role="alert" class="hidden bg-rose-50 border border-rose-200 text-rose-800 rounded-xl p-3 text-xs font-semibold">Pagamento recusado: tente outra forma de pagamento. Seu carrinho foi mantido e nenhum ponto foi creditado.</div>
+                <div class="flex flex-col sm:flex-row items-center gap-2 pt-1">
+                  <button onclick="AppState.etapaCheckout = 1; renderizarApp();" class="w-full sm:flex-1 bg-palha-200 hover:bg-palha-300 text-stone-800 font-bold py-2.5 sm:py-3 rounded-xl text-xs order-2 sm:order-1">Voltar</button>
+                  <button onclick="executarAcaoPagamento()" class="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 sm:py-3 rounded-xl text-xs shadow-md order-1 sm:order-2">Pagar agora</button>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      },
+
+      orders() {
+        if (!AppState.pedidos.length) {
+          return `
+            <div class="max-w-md mx-auto py-12 text-center bg-white rounded-3xl p-8 border border-palha-200 shadow-sm mt-4">
+              <span class="text-4xl block mb-2">📋</span>
+              <h2 class="font-brand font-bold text-2xl text-stone-900 mb-1">Você ainda não fez pedidos</h2>
+              <p class="text-stone-500 text-xs mb-5">Quando você fizer um pedido, poderá acompanhar o status em tempo real aqui.</p>
+              <button onclick="go('menu')" class="bg-terra-600 text-white font-bold px-5 py-2.5 rounded-full text-xs shadow hover:bg-terra-700">Ver Cardápio</button>
+            </div>
+          `;
+        }
+
+        const ETAPAS = [
+          { label: 'Recebido', icon: '📝' },
+          { label: 'Em preparo', icon: '🔥' },
+          { label: 'Pronto para retirada', icon: '✨' },
+          { label: 'Retirado', icon: '🍽️' }
+        ];
+
+        return `
+          <div class="max-w-3xl mx-auto space-y-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="font-brand font-bold text-2xl text-stone-900">Acompanhamento dos Pedidos</h2>
+                <p class="text-xs text-stone-500">Status sincronizado com a equipe do balcão e da cozinha</p>
+              </div>
+              <button onclick="go('menu')" class="bg-white border border-palha-300 text-stone-700 px-3.5 py-1.5 rounded-full text-xs font-semibold hover:bg-palha-100">+ Novo pedido</button>
+            </div>
+
+            <div class="space-y-4">
+              ${AppState.pedidos.map(ped => `
+                <div class="bg-white rounded-3xl p-5 sm:p-6 border border-palha-200 shadow-xs space-y-4">
+                  <div class="flex flex-wrap items-center justify-between gap-2 border-b border-palha-100 pb-3">
+                    <div>
+                      <span class="text-[11px] font-bold text-terra-700 bg-terra-50 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                        Pedido #${ped.id}
+                      </span>
+                      <h4 class="font-bold text-stone-900 text-sm mt-1">${UNIDADES[ped.unidade].nome}</h4>
+                      <p class="text-[11px] text-stone-500">${ped.dataHora} • Canal: ${ped.canal}</p>
+                    </div>
+                    <div class="text-right">
+                      <span class="text-xs text-stone-500">Total Pago</span>
+                      <p class="font-bold text-stone-900 text-lg">${emReais(ped.total)}</p>
+                    </div>
+                  </div>
+
+                  <!-- Linha de Etapas de Preparo Conforme Tabela 3 RF06 -->
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    ${ETAPAS.map((etp, idx) => `
+                      <div class="p-3 rounded-2xl text-center border transition-all ${
+                        idx <= ped.st 
+                          ? 'bg-terra-50 border-terra-300 text-terra-900 font-bold' 
+                          : 'bg-stone-50 border-stone-100 text-stone-500'
+                      }">
+                        <span class="text-base block mb-0.5">${etp.icon}</span>
+                        <span class="text-[11px] block leading-tight">${etp.label}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+
+                  <div class="flex items-center justify-between pt-1 text-xs">
+                    <span class="text-stone-500 font-medium">
+                      ${ped.st < 3 ? 'Quando estiver pronto, retire no balcão informando o número do pedido.' : '✅ Pedido concluído e retirado.'}
+                    </span>
+                    ${ped.st < 3 ? `
+                      <button onclick="avancarEtapaPedido(${ped.id})" class="bg-palha-200 hover:bg-palha-300 text-stone-800 font-semibold px-3 py-1.5 rounded-full transition">
+                        Simular próxima etapa (cozinha/atendente)
+                      </button>
+                    ` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      },
+
+      loy() {
+        return `
+          <div class="max-w-2xl mx-auto space-y-6">
+            <div class="bg-gradient-to-br from-amber-600 via-terra-700 to-terra-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+              <span class="text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full">Clube Arretado</span>
+              <h2 class="font-brand text-2xl sm:text-3xl font-bold mt-2 mb-1">Programa de Fidelização & Recompensas</h2>
+              <p class="text-xs text-stone-200 max-w-md">Cada R$ 1 gasto na rede Raízes vira 1 ponto. A cada 100 pontos acumulados, você ganha R$ 10 de desconto direto na comanda.</p>
+              
+              <div class="mt-5 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-amber-200">Saldo Atual do Cliente</span>
+                  <p class="font-brand font-bold text-3xl text-amber-300">${AppState.pontosFidelidade} <span class="text-sm font-sans font-normal text-white">pontos</span></p>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs text-stone-200 block">Equivale a</span>
+                  <span class="font-bold text-lg text-white">${emReais(Math.floor(AppState.pontosFidelidade / 100) * 10)} OFF</span>
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <div class="flex justify-between text-xs text-stone-200 mb-1">
+                  <span>Faltam ${100 - (AppState.pontosFidelidade % 100)} pontos para ganhar R$ 10,00</span><span>${AppState.pontosFidelidade % 100}/100</span>
+                </div>
+                <div class="w-full bg-black/30 h-2.5 rounded-full overflow-hidden">
+                  <div class="bg-amber-400 h-full rounded-full transition-all duration-500" style="width: ${AppState.pontosFidelidade % 100}%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 border border-palha-200 shadow-sm space-y-3">
+              <h3 class="font-brand font-bold text-lg text-stone-900">Como funciona o resgate?</h3>
+              <p class="text-xs text-stone-600 leading-relaxed">
+                Quando seu saldo atingir 100 pontos ou mais, basta digitar o cupom <strong>PONTOS</strong> no fechamento do seu carrinho para abater R$ 10,00 do total do pedido (consome 100 pontos).</p><button onclick="usarMeusPontos()" class="bg-terra-600 hover:bg-terra-700 text-white font-bold px-4 py-2 rounded-xl text-xs">Usar meus pontos</button>
+            </div>
+          </div>
+        `;
+      },
+
+      promo() {
+        return `
+          <div class="max-w-3xl mx-auto space-y-5">
+            <div>
+              <h2 class="font-brand font-bold text-2xl text-stone-900">Promoções e Campanhas Ativas</h2>
+              <p class="text-xs text-stone-500">Campanhas promocionais ativas em todas as unidades da rede</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-white rounded-3xl p-5 border border-palha-200 shadow-xs flex flex-col justify-between">
+                <div>
+                  <span class="bg-amber-100 text-amber-900 text-[11px] font-bold px-2 py-0.5 rounded-full uppercase">Cupom de Boas-Vindas</span>
+                  <h3 class="font-brand font-bold text-xl text-stone-900 mt-2 mb-1">10% OFF no pedido</h3>
+                  <p class="text-xs text-stone-600">Válido para pratos, tapiocas e bebidas em qualquer franquia.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-palha-100 flex items-center justify-between">
+                  <code class="bg-palha-100 font-mono font-bold text-terra-700 px-2.5 py-1 rounded text-xs">RAIZ10</code>
+                  <button onclick="copiarCupom('RAIZ10')" class="text-xs bg-terra-600 text-white font-bold px-3 py-1.5 rounded-lg">Copiar Cupom</button>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-3xl p-5 border border-palha-200 shadow-xs flex flex-col justify-between">
+                <div>
+                  <span class="bg-yellow-100 text-yellow-900 text-[11px] font-bold px-2 py-0.5 rounded-full uppercase">Campanha Semanal</span>
+                  <h3 class="font-brand font-bold text-xl text-stone-900 mt-2 mb-1">Terça-Feira do Cuscuz</h3>
+                  <p class="text-xs text-stone-600">Cuscuz quentinho com queijo coalho e ovos com preço promocional de R$ 9,90.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-palha-100 flex items-center justify-between">
+                  <span class="text-xs text-stone-500">Ativa nas terças-feiras</span>
+                  <button onclick="go('menu')" class="text-xs bg-stone-900 text-white font-bold px-3 py-1.5 rounded-lg">Pedir no Menu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      },
+
+      priv() {
+        return `
+          <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 sm:p-8 border border-palha-200 shadow-sm space-y-5">
+            <div>
+              <h2 class="font-brand font-bold text-2xl text-stone-900">Conformidade e Privacidade (LGPD)</h2>
+              <p class="text-xs text-stone-500 mt-0.5">Lei Geral de Proteção de Dados Pessoais (Lei Federal nº 13.709/2018)</p>
+            </div>
+
+            <div class="text-xs text-stone-600 space-y-3 leading-relaxed">
+              <p>O sistema da rede <strong>Raízes do Nordeste</strong> coleta estritamente os dados necessários para o atendimento: nome, telefone para localização do pedido, e-mail para envio do comprovante fiscal e histórico de pontuação de fidelidade.</p>
+              <p><strong>Segurança no Pagamento:</strong> Dados confidenciais de cartões de crédito jamais são armazenados em nossos servidores locais ou no navegador, sendo processados diretamente via token seguro pelo Gateway de Pagamento homologado.</p>
+            </div>
+
+            <div class="border-t border-palha-100 pt-4 space-y-3 text-xs">
+              <div class="p-3.5 bg-palha-50 rounded-2xl border border-palha-200"><strong class="text-stone-900 block">Uso dos dados para pedidos e fidelidade</strong><span class="text-stone-500 text-[11px]">Necessário para o funcionamento do serviço</span></div>
+              <label class="flex items-center justify-between p-3.5 bg-palha-50 rounded-2xl border border-palha-200">
+                <div>
+                  <strong class="text-stone-900 block">Comunicações e Campanhas de Marketing</strong>
+                  <span class="text-stone-500 text-[11px]">Receber ofertas exclusivas por WhatsApp e e-mail</span>
+                </div>
+                <input type="checkbox" ${AppState.consentimentoLGPD.marketing ? 'checked' : ''} onchange="toggleConsentimentoMkt(this.checked)" class="w-4 h-4 text-terra-600 rounded">
+              </label>
+            </div>
+
+            <div class="border-t border-palha-100 pt-4 flex flex-wrap gap-2 text-xs">
+              <button onclick="abrirPolitica()" class="bg-white border border-palha-300 text-stone-800 font-bold px-4 py-2 rounded-xl">📄 Ler a Política de Privacidade</button>
+              <button onclick="exportarDadosLGPD()" class="bg-palha-200 hover:bg-palha-300 text-stone-800 font-bold px-4 py-2 rounded-xl transition">
+                📥 Baixar Meus Dados (Portabilidade LGPD)
+              </button>
+              <button onclick="revogarDadosLGPD()" class="text-terra-700 bg-terra-50 hover:bg-terra-100 font-bold px-4 py-2 rounded-xl border border-terra-200 transition">
+                🗑️ Excluir Minha Conta e Dados
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    };
+
+    function renderizarCardPrato(prato) {
+      return `
+        <div class="dish-card bg-white rounded-3xl border border-palha-200 shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col group">
+          <div class="relative h-44 sm:h-48 w-full overflow-hidden bg-palha-200 cursor-pointer" onclick="abrirModalPrato(${prato.id})">
+            <img 
+              src="${prato.img}" 
+              alt="${prato.nome}" 
+              class="w-full h-full object-cover img-zoom"
+              loading="lazy"
+              onerror="this.src='https://placehold.co/600x400/faf5f0/78350f?text=Culinaria+Regional'"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-3 left-3">
+              <span class="text-[11px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full ${prato.badge}">
+                ${prato.destaque}
+              </span>
+            </div>
+            <div class="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white text-[11px] font-medium drop-shadow-md">
+              <span>⏱ ${prato.tempo}</span>
+              <span>${prato.serve}</span>
+            </div>
+          </div>
+
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-brand font-bold text-base sm:text-lg text-stone-900 group-hover:text-terra-700 transition leading-snug cursor-pointer" onclick="abrirModalPrato(${prato.id})">
+                ${prato.nome}
+              </h3>
+              <p class="text-stone-500 text-xs line-clamp-2 leading-relaxed mt-1">
+                ${prato.descricao}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-palha-100 flex items-center justify-between mt-3">
+              <div>
+                <span class="text-[11px] text-stone-500 block font-medium">Preço</span>
+                <span class="font-bold text-stone-950 text-base">${emReais(prato.preco)}</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button onclick="abrirModalPrato(${prato.id})" class="bg-palha-100 hover:bg-palha-200 text-stone-700 px-3 py-1.5 rounded-xl text-xs font-semibold">
+                  Detalhes
+                </button>
+                <button onclick="adicionarAoCarrinho(${prato.id})" class="bg-terra-600 hover:bg-terra-700 text-white font-bold p-2 rounded-xl shadow-xs transition" aria-label="Adicionar prato">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function abrirModalPrato(id) {
+      const prato = CARDAPIO.find(p => p.id == id);
+      if (!prato) return;
+
+      const modal = document.getElementById('dish-modal');
+      const container = document.getElementById('dish-modal-content');
+
+      container.innerHTML = `
+        <div class="relative h-48 w-full bg-stone-200 shrink-0">
+          <img src="${prato.img}" alt="${prato.nome}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/faf5f0/78350f?text=Raizes'">
+          <button onclick="fecharModalPrato()" aria-label="Fechar" class="absolute top-3 right-3 bg-black/60 text-white p-2 rounded-full hover:bg-black/90 transition leading-none">&times;</button>
+        </div>
+        <div class="p-5 space-y-3 text-xs">
+          <div>
+            <span class="text-[11px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${prato.badge}">${prato.destaque}</span>
+            <h3 class="font-brand font-bold text-xl text-stone-900 mt-1">${prato.nome}</h3>
+            <p class="text-stone-600 leading-relaxed mt-1">${prato.descricao}</p>
+          </div>
+          <div>
+            <label class="block font-bold text-stone-700 mb-1">Alguma observação para a cozinha?</label>
+            <textarea id="dish-obs" rows="2" placeholder="Ex: Sem cebola, queijo bem tostadinho, manteiga à parte..." class="w-full bg-palha-50 border border-palha-200 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-terra-500"></textarea>
+          </div>
+          <div class="border-t border-palha-200 pt-3 flex items-center justify-between">
+            <span class="font-bold text-lg text-stone-900">${emReais(prato.preco)}</span>
+            <button onclick="confirmarAdicaoModal(${prato.id})" class="bg-terra-600 hover:bg-terra-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-md">
+              Colocar no carrinho
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function fecharModalPrato() {
+      const modal = document.getElementById('dish-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmarAdicaoModal(id) {
+      const obs = document.getElementById('dish-obs')?.value?.trim() || '';
+      adicionarAoCarrinho(id, obs);
+      fecharModalPrato();
+    }
+
+    function adicionarAoCarrinho(id, obs = '') {
+      const prato = CARDAPIO.find(p => p.id == id);
+      if (!prato) return;
+
+      if (!AppState.carrinho[id]) {
+        AppState.carrinho[id] = { qtd: 1, obs: obs };
+      } else {
+        AppState.carrinho[id].qtd += 1;
+        if (obs) AppState.carrinho[id].obs = obs;
+      }
+
+      atualizarBadgeCarrinho();
+      showToast('Item adicionado!', `${prato.nome} foi colocado no carrinho.`);
+    }
+
+    function alterarQtdCarrinho(id, delta) {
+      if (!AppState.carrinho[id]) return;
+      AppState.carrinho[id].qtd += delta;
+      if (AppState.carrinho[id].qtd <= 0) delete AppState.carrinho[id];
+      renderizarApp();
+    }
+
+    function atualizarBadgeCarrinho() {
+      const badge = document.getElementById('cart-badge');
+      if (badge) badge.textContent = contarItensCarrinho();
+    }
+
+    function aplicarCupom() {
+      const codigo = document.getElementById('input-cupom')?.value?.trim().toUpperCase();
+      if (!codigo) {
+        AppState.cupomAplicado = null;
+        renderizarApp();
+        return;
+      }
+
+      if (codigo === 'RAIZ10') {
+        AppState.cupomAplicado = 'RAIZ10';
+        showToast('Cupom aplicado!', '10% de desconto concedido.');
+      } else if (codigo === 'PONTOS') {
+        if (AppState.pontosFidelidade < 100) {
+          showToast('Pontos insuficientes', 'Você precisa de 100 pontos para usar este cupom.', 'erro');
+          return;
+        }
+        AppState.cupomAplicado = 'PONTOS';
+        showToast('Pontos aplicados!', 'Desconto do Clube Arretado concedido.');
+      } else {
+        showToast('Cupom inválido', 'Cupom inválido. Confira o código e tente de novo.', 'erro');
+        return;
+      }
+
+      renderizarApp();
+    }
+    let metodoPagamentoSelecionado = 'pix';
+    function selecionarMetodoPag(metodo) {
+      metodoPagamentoSelecionado = metodo;
+      document.getElementById('pag-retorno')?.classList.add('hidden');
+      const painelPix = document.getElementById('painel-pix');
+      if (painelPix) {
+        painelPix.style.display = (metodo === 'pix') ? 'block' : 'none';
+      }
+    }
+
+    function executarAcaoPagamento() {
+      if (metodoPagamentoSelecionado === 'falha') {
+        simularFalhaPagamento();
+      } else {
+        processarPagamentoExterno();
+      }
+    }
+
+    function processarPagamentoExterno() {
+      const main = document.getElementById('main-content');
+      main.innerHTML = `
+        <div class="max-w-md mx-auto py-16 text-center bg-white rounded-3xl p-8 border border-palha-200 shadow-sm mt-4">
+          <div class="w-14 h-14 border-4 border-terra-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <h3 class="font-brand font-bold text-xl text-stone-900">Aguardando o serviço de pagamento...</h3>
+          <p class="text-xs text-stone-500 mt-1">Conectando ao gateway externo. Não feche esta tela.</p>
+        </div>
+      `;
+
+      setTimeout(() => {
+        const total = calcularTotal();
+        const novoId = 1000 + AppState.pedidos.length + 1;
+
+        AppState.pedidos.unshift({
+          id: novoId,
+          unidade: AppState.unidade,
+          total: total,
+          st: 0,
+          canal: AppState.canal.toUpperCase(),
+          dataHora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+        });
+
+        // Pontuação de fidelidade conforme RN01 e RN02
+        const pts = Math.floor(total);
+        if (AppState.cupomAplicado === 'PONTOS') {
+          AppState.pontosFidelidade = Math.max(0, AppState.pontosFidelidade - 100);
+        }
+        AppState.pontosFidelidade += pts;
+
+        AppState.carrinho = {};
+        AppState.cupomAplicado = null;
+        AppState.etapaCheckout = 0;
+        AppState.abaAtiva = 'orders';
+
+        renderizarApp();
+        showToast('Pagamento aprovado', `Pedido #${novoId} recebido. Você ganhou ${pts} pontos.`);
+      }, 1200);
+    }
+
+    function simularFalhaPagamento() {
+      document.getElementById('pag-retorno')?.classList.remove('hidden');
+      showToast('Pagamento recusado', 'Tente outra forma de pagamento. Seu carrinho foi mantido.', 'erro');
+    }
+
+    function copiarPixChave() {
+      copiarTextoParaClipboard('00020126580014br.gov.bcb.pix0136raizes-nordeste-uninter@pix.com');
+      showToast('Chave Pix copiada!', 'Cole no seu app bancário para pagar.');
+    }
+
+    function copiarTextoParaClipboard(texto) {
+      const temp = document.createElement('textarea');
+      temp.value = texto;
+      document.body.appendChild(temp);
+      temp.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(temp);
+    }
+
+    function avancarCheckout() {
+      if (AppState.usuario) {
+        AppState.etapaCheckout = 2; // Usuário já identificado, avança para pagamento
+      } else {
+        AppState.etapaCheckout = 1;
+      }
+      renderizarApp();
+    }
+
+    function avancarEtapaPedido(id) {
+      const ped = AppState.pedidos.find(p => p.id === id);
+      if (ped && ped.st < 3) {
+        ped.st += 1;
+        renderizarApp();
+        showToast('Cozinha atualizada', `Comanda #${id} avançou para a próxima etapa.`);
+      }
+    }
+
+    function filtrarCategoria(cat) {
+      AppState.categoriaFiltro = cat;
+      AppState.abaAtiva = 'menu';
+      renderizarApp();
+    }
+
+    function pesquisarPrato(texto) {
+      AppState.buscaTexto = texto;
+      renderizarApp(false);
+      const input = document.getElementById('search-input');
+      if (input) {
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+      }
+    }
+
+    function abrirModalAuth(aba = 'login') {
+      const modal = document.getElementById('auth-modal');
+      alternarAbaAuth(aba);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function fecharModalAuth() {
+      const modal = document.getElementById('auth-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function alternarAbaAuth(aba) {
+      const formLogin = document.getElementById('form-login');
+      const formReg = document.getElementById('form-register');
+      const btnLog = document.getElementById('tab-btn-login');
+      const btnReg = document.getElementById('tab-btn-register');
+      const title = document.getElementById('auth-modal-title');
+
+      if (aba === 'login') {
+        formLogin.classList.remove('hidden');
+        formReg.classList.add('hidden');
+        btnLog.className = 'flex-1 py-3 text-xs font-bold text-terra-700 border-b-2 border-terra-600';
+        btnReg.className = 'flex-1 py-3 text-xs font-semibold text-stone-500 hover:text-stone-800';
+        title.textContent = 'Acesse sua Conta';
+      } else {
+        formLogin.classList.add('hidden');
+        formReg.classList.remove('hidden');
+        btnReg.className = 'flex-1 py-3 text-xs font-bold text-terra-700 border-b-2 border-terra-600';
+        btnLog.className = 'flex-1 py-3 text-xs font-semibold text-stone-500 hover:text-stone-800';
+        title.textContent = 'Cadastro de Novo Cliente';
+      }
+    }
+
+    function realizarLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const err = document.getElementById('login-error');
+
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        err.textContent = 'Informe um e-mail válido.';
+        return;
+      }
+
+      AppState.usuario = {
+        id: 102,
+        nome: esc(email.split('@')[0]),
+        email: esc(email)
+      };
+
+      fecharModalAuth();
+      showToast('Bem-vindo!', `Login efetuado como ${AppState.usuario.nome}.`);
+      renderizarApp();
+    }
+
+    function realizarCadastro(e) {
+      e.preventDefault();
+      const nome = document.getElementById('reg-nome').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const senha = document.getElementById('reg-senha').value;
+      const lgpdObrigatorio = document.getElementById('reg-lgpd-obrigatorio').checked;
+      const lgpdMkt = document.getElementById('reg-lgpd-mkt').checked;
+      const err = document.getElementById('reg-error');
+
+      if (nome.length < 2) {
+        err.textContent = 'Informe seu nome.';
+        return;
+      }
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        err.textContent = 'Informe um e-mail válido.';
+        return;
+      }
+      if (senha.length < 6) {
+        err.textContent = 'A senha precisa ter ao menos 6 caracteres.';
+        return;
+      }
+      if (!lgpdObrigatorio) {
+        err.textContent = 'Para criar a conta, aceite a Política de Privacidade.';
+        return;
+      }
+
+      AppState.usuario = {
+        id: Math.floor(Math.random() * 900) + 200,
+        nome: esc(nome),
+        email: esc(email)
+      };
+
+      AppState.consentimentoLGPD.marketing = lgpdMkt;
+      fecharModalAuth();
+      showToast('Conta criada', `Cadastro de ${nome} realizado com sucesso.`);
+      
+      if (AppState.etapaCheckout === 1) AppState.etapaCheckout = 2;
+      renderizarApp();
+    }
+
+    function deslogarUsuario() {
+      AppState.usuario = null;
+      showToast('Sessão encerrada', 'Você saiu da sua conta.');
+      renderizarApp();
+    }
+
+    function toggleConsentimentoMkt(val) {
+      AppState.consentimentoLGPD.marketing = val;
+      showToast('Preferência salva', val ? 'Você receberá promoções por e-mail/WhatsApp.' : 'Envio de promoções cancelado.');
+    }
+
+    function exportarDadosLGPD() {
+      if (!AppState.usuario) { showToast('Entre na sua conta', 'Faça login para baixar seus dados.', 'erro'); return; }
+      const dados = { usuario: AppState.usuario, consentimentos: AppState.consentimentoLGPD, pontos: AppState.pontosFidelidade, pedidos: AppState.pedidos };
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' }));
+      a.download = 'meus-dados-raizes.json';
+      a.click();
+      showToast('Dados exportados', 'Arquivo com seus dados gerado (portabilidade).');
+    }
+
+    function revogarDadosLGPD() {
+      if (!AppState.usuario) { showToast('Sem conta', 'Não há conta para excluir.', 'erro'); return; }
+      if (!confirm('Excluir sua conta, pontos e pedidos? Esta ação não pode ser desfeita.')) return;
+      AppState.usuario = null; AppState.pontosFidelidade = 0; AppState.pedidos = [];
+      AppState.carrinho = {}; AppState.cupomAplicado = null;
+      AppState.consentimentoLGPD = { obrigatorio: false, marketing: false };
+      atualizarBadgeCarrinho();
+      showToast('Conta excluída', 'Seus dados, pontos e pedidos foram removidos.');
+      go('menu');
+    }
+
+    const ABAS = [
+      { id: 'menu', label: 'Cardápio', icon: '🍲' },
+      { id: 'cart', label: 'Carrinho', icon: '🧺' },
+      { id: 'orders', label: 'Pedidos', icon: '📋' },
+      { id: 'loy', label: 'Fidelidade', icon: '⭐' },
+      { id: 'promo', label: 'Promoções', icon: '🏷️' },
+      { id: 'priv', label: 'Privacidade', icon: '🔒' }
+    ];
+
+    function renderizarApp(reconstruirHeader = true) {
+      if (AppState.etapaCheckout !== 2) metodoPagamentoSelecionado = 'pix';
+      const nav = document.getElementById('nav-container');
+      const main = document.getElementById('main-content');
+      const authBtnContainer = document.getElementById('auth-header-btn');
+      const qtdCarrinho = contarItensCarrinho();
+
+      // Botão de Autenticação / Perfil no Topo
+      if (authBtnContainer) {
+        if (AppState.usuario) {
+          authBtnContainer.innerHTML = `
+            <div class="flex items-center gap-1 bg-palha-200 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs">
+              <span class="font-bold text-stone-800 truncate max-w-[70px] sm:max-w-none">👤 ${AppState.usuario.nome.split(' ')[0]}</span>
+              <button onclick="deslogarUsuario()" class="text-stone-500 hover:text-stone-700 ml-0.5 font-bold text-sm leading-none" title="Sair">&times;</button>
+            </div>
+          `;
+        } else {
+          authBtnContainer.innerHTML = `
+            <button onclick="abrirModalAuth('login')" class="bg-palha-200 hover:bg-palha-300 text-stone-800 font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs transition">
+              Entrar
+            </button>
+          `;
+        }
+      }
+
+      if (reconstruirHeader) {
+        nav.innerHTML = ABAS.map(aba => `
+          <button 
+            onclick="go('${aba.id}')" 
+            class="flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
+              AppState.abaAtiva === aba.id 
+                ? 'bg-terra-700 text-white shadow-xs' 
+                : 'text-stone-600 hover:text-stone-900 hover:bg-palha-200'
+            }"
+          >
+            <span>${aba.icon}</span>
+            <span>${aba.label}</span>
+            ${aba.id === 'cart' && qtdCarrinho > 0 ? `
+              <span class="bg-dende-400 text-stone-950 px-1.5 py-0.2 rounded-full font-bold text-[11px]">${qtdCarrinho}</span>
+            ` : ''}
+          </button>
+        `).join('');
+
+        atualizarBadgeCarrinho();
+      }
+
+      if (Telas[AppState.abaAtiva]) {
+        main.innerHTML = Telas[AppState.abaAtiva]();
+      }
+
+      // Aplicação da Multicanalidade (Totem x Web x App)
+      document.documentElement.classList.toggle('canal-totem', AppState.canal === 'totem');
+      document.documentElement.classList.toggle('canal-app', AppState.canal === 'app');
+      const bannerMode = document.getElementById('banner-mode-badge');
+      if (bannerMode) {
+        bannerMode.textContent = AppState.canal === 'totem' ? '🖥️ Modo Totem (Touchscreen Ampliado)' : AppState.canal === 'app' ? '📱 Modo App Mobile' : '🌐 Modo Web Responsivo';
+      }
+    }
+
+    const unitSelect = document.getElementById('unit-select');
+    unitSelect.innerHTML = Object.entries(UNIDADES).map(([k, v]) => `
+      <option value="${k}">${v.nome}</option>
+    `).join('');
+    unitSelect.value = AppState.unidade;
+
+    unitSelect.addEventListener('change', (e) => {
+      AppState.unidade = e.target.value;
+      // Conforme Regra de Negócio RN04: ao trocar de unidade, o carrinho é reiniciado
+      AppState.carrinho = {};
+      AppState.cupomAplicado = null;
+      atualizarBadgeCarrinho();
+      showToast('Unidade alterada', `Visualizando cardápio de ${UNIDADES[AppState.unidade].cidade}. O carrinho foi reiniciado conforme a regra do negócio.`);
+      renderizarApp();
+    });
+
+    const channelSelect = document.getElementById('channel-select');
+    channelSelect.value = AppState.canal;
+    channelSelect.addEventListener('change', (e) => {
+      AppState.canal = e.target.value; resetInatividade();
+      if (AppState.canal === 'totem') {
+        showToast('Modo Totem ativado', 'Layout configurado com tipografia e botões para autoatendimento.');
+      } else {
+        showToast('Canal alterado', `Alternado para modo ${AppState.canal.toUpperCase()}.`);
+      }
+      renderizarApp();
+    });
+
+    document.getElementById('dish-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'dish-modal') fecharModalPrato();
+    });
+
+    document.getElementById('auth-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'auth-modal') fecharModalAuth();
+    });
+
+    function abrirPolitica() { const m = document.getElementById('policy-modal'); m.classList.remove('hidden'); m.classList.add('flex'); }
+    function fecharPolitica() { const m = document.getElementById('policy-modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+    function usarMeusPontos() {
+      if (AppState.pontosFidelidade < 100) { showToast('Pontos insuficientes', 'Você precisa de 100 pontos para usar este cupom.', 'erro'); return; }
+      AppState.cupomAplicado = 'PONTOS';
+      showToast('Pontos aplicados', 'R$ 10,00 de desconto aplicados ao carrinho.');
+      go('cart');
+    }
+    // Totem: reinício por inatividade (45 s), sem manter dados pessoais na tela
+    let inatividadeTimer;
+    function resetInatividade() {
+      clearTimeout(inatividadeTimer);
+      if (AppState.canal !== 'totem') return;
+      inatividadeTimer = setTimeout(() => {
+        Object.assign(AppState, { carrinho: {}, usuario: null, cupomAplicado: null, etapaCheckout: 0, buscaTexto: '', categoriaFiltro: 'Todos', pedidos: [], pontosFidelidade: 0 });
+        fecharModalAuth(); fecharModalPrato(); fecharPolitica();
+        go('menu'); atualizarBadgeCarrinho();
+        showToast('Tela reiniciada', 'Reinício por inatividade. Nenhum dado pessoal foi mantido.');
+      }, 45000);
+    }
+    ['click', 'touchstart', 'keydown'].forEach(ev => document.addEventListener(ev, resetInatividade));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fecharModalAuth(); fecharModalPrato(); fecharPolitica(); } });
+    document.getElementById('policy-modal').addEventListener('click', (e) => { if (e.target.id === 'policy-modal') fecharPolitica(); });
+    document.querySelectorAll('#auth-modal label.block').forEach(l => { const i = l.nextElementSibling; if (i && i.id) l.htmlFor = i.id; });
+
+    // Início imediato da aplicação
+    renderizarApp();
+  </script>
+</body>
+</html>
