@@ -70,12 +70,10 @@
     }
     html.canal-totem button:not(.btn-mini), html.canal-totem input:not([type=checkbox]):not([type=radio]), html.canal-totem select { min-height: 64px; }
     html.canal-totem .btn-mini { min-width: 56px; min-height: 56px; }
-    html.canal-app { background: #e1d2b7; }
-    html.canal-app body { max-width: 430px; margin: 0 auto; box-shadow: 0 0 0 1px #c9b896; }
     label:has(input[name=forma-pag]:checked) { border: 2px solid #c5421d !important; background: #fcf6f2 !important; }
     label:has(input[name=forma-pag]:focus-visible) { outline: 3px solid #1d4ed8; outline-offset: 2px; }
-    html.canal-totem .grid-cardapio {
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    @media (min-width: 768px) {
+      html.canal-totem .grid-cardapio { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
     }
   </style>
 </head>
@@ -251,6 +249,17 @@
     </div>
   </div>
 
+  <div id="app-frame" class="fixed inset-0 z-[60] hidden flex-col items-center bg-stone-800/95 p-3">
+    <div class="flex flex-wrap items-center justify-center gap-2 text-white text-xs mb-2">
+      <span class="font-bold">📱 Simulação do App (390 × 760)</span>
+      <button onclick="mudarCanal('web')" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full font-semibold">🌐 Voltar para Web</button>
+      <button onclick="mudarCanal('totem')" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full font-semibold">🖥️ Totem</button>
+    </div>
+    <div class="overflow-hidden bg-white shadow-2xl" style="width:390px;max-width:100%;height:calc(100vh - 80px);max-height:780px;border:10px solid #0c0a09;border-radius:32px">
+      <iframe id="app-iframe" title="Simulação do App" class="w-full h-full border-0"></iframe>
+    </div>
+  </div>
+
   <div id="policy-modal" role="dialog" aria-modal="true" aria-label="Política de Privacidade" class="fixed inset-0 z-50 bg-stone-900/60 hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 text-xs text-stone-700 space-y-3 leading-relaxed">
       <h3 class="font-brand font-bold text-xl text-stone-900">Política de Privacidade</h3>
@@ -400,10 +409,13 @@
       }
     ];
 
+    // Modo App em tela larga: o site é aberto dentro de uma moldura de celular (iframe), para os breakpoints responderem à largura do celular
+    const EMBED = new URLSearchParams(location.search).get('embed') === 'app';
+
     const AppState = {
       usuario: null, // Inicia deslogado (visitante)
       unidade: 'centro',
-      canal: 'web', // 'web' | 'app' | 'totem'
+      canal: EMBED ? 'app' : 'web', // 'web' | 'app' | 'totem'
       abaAtiva: 'menu',
       categoriaFiltro: 'Todos',
       buscaTexto: '',
@@ -1400,6 +1412,7 @@
       // Aplicação da Multicanalidade (Totem x Web x App)
       document.documentElement.classList.toggle('canal-totem', AppState.canal === 'totem');
       document.documentElement.classList.toggle('canal-app', AppState.canal === 'app');
+      atualizarModoApp();
       const bannerMode = document.getElementById('banner-mode-badge');
       if (bannerMode) {
         bannerMode.textContent = AppState.canal === 'totem' ? '🖥️ Modo Totem (Touchscreen Ampliado)' : AppState.canal === 'app' ? '📱 Modo App Mobile' : '🌐 Modo Web Responsivo';
@@ -1466,6 +1479,23 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fecharModalAuth(); fecharModalPrato(); fecharPolitica(); } });
     document.getElementById('policy-modal').addEventListener('click', (e) => { if (e.target.id === 'policy-modal') fecharPolitica(); });
     document.querySelectorAll('#auth-modal label.block').forEach(l => { const i = l.nextElementSibling; if (i && i.id) l.htmlFor = i.id; });
+
+    function mudarCanal(canal) {
+      const sel = document.getElementById('channel-select');
+      sel.value = canal;
+      sel.dispatchEvent(new Event('change'));
+    }
+    function atualizarModoApp() {
+      const fr = document.getElementById('app-frame');
+      if (EMBED || !fr) return;
+      const mostrar = AppState.canal === 'app' && window.innerWidth >= 640;
+      fr.classList.toggle('hidden', !mostrar);
+      fr.classList.toggle('flex', mostrar);
+      const f = document.getElementById('app-iframe');
+      if (mostrar && !f.getAttribute('src')) f.src = location.pathname + '?embed=app';
+    }
+    window.addEventListener('resize', atualizarModoApp);
+    if (EMBED) document.getElementById('channel-select').parentElement.classList.add('hidden');
 
     // Início imediato da aplicação
     renderizarApp();
